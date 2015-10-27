@@ -5,11 +5,11 @@ Scenes:
     rounds: all
     backdrop: ul
     set_pieces:
-    - li.old_man
-    - li.knight
-    - li.knight
-    - li.king
-    - li.answers
+      - li.old_man
+      - li.knight
+      - li.knight
+      - li.king
+      - li.answers
 Widgets:
   - CountdownClock
   - Scoreboard
@@ -21,14 +21,14 @@ Templates:
       container: li.answers
     Responder:
       container: li.old_man
-    Teardown:
+    Teardown: !do
       call: clearCards
       pass: 
         - li.old_man
   - &MULTIPLE_CHOICE_ROUND
     << : *BASE_ROUND
     ResponseTypes: MultipleChoice
-    MaxTime: 5
+    MaxTime: 15
 Intro:
   content:
     h2: Scene 87
