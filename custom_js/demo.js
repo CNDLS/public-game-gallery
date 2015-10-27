@@ -8,11 +8,38 @@ Game.Scene.new(Game.Scene.Basic, "Gorge", {
 	finalize: function (round) {
     $("h1#title").addClass("dim");
   },
+
+	enterPromptPlayer: function (evt, info) {
+    var round = info.round;
+		var game = round.game;
+    
+		if ($("li.knight, li.king").length == 0) {
+			round.cancelTransition();
+			game.nextTick().then(function () {
+				Game.clearCards("li.old_man", ".prompt");
+				Game.clearCards("li.answers");
+				game.end();
+			});
+		}
+	},
   
   enterListenForPlayer: function (evt, info) {
     var round = info.round;
-    var listener = round.listener;
-  	$(listener.container).find("input[type=text]").get(0).focus();
+    var subject = $("li.knight, li.king").first();
+    
+    switch (round.nbr) {
+      case 1:
+        round.listener.cards[0].element.find("input[type=text]").get(0).focus();
+        break;
+      
+      case 3:
+        if (subject.is("li.king")) {
+          // tweak last voice balloons (much more text than others).
+          round.listener.cards[0].element.css({ width: "80%" });
+        }
+        break;
+    }
+  	
   },
   
 	leaveListenForPlayer: function (evt, info) {
@@ -86,18 +113,7 @@ Game.Scene.new(Game.Scene.Basic, "Gorge", {
 				}
 				break;
 		}
-  },
-
-	enterGivePrompt: function (evt, info) {
-		if ($("li.knight, li.king").length == 0) {
-			round.cancelTransition();
-			game.nextTick().then(function () {
-				Game.clearCards("li.old_man", ".prompt");
-				Game.clearCards("li.answers");
-				game.end();
-			});
-		}
-	}
+  }
 	
 });
 
@@ -120,7 +136,7 @@ function throwTheSubjectIntoTheGorge (info, subject, round, game) {
 
 	subject
 	// *** START ANIM.*** hoist him up,
-	.animate({ "top": -300 }, { duration: 1000, easing: "swing",
+	.animate({ "top": -300 }, { duration: 500, easing: "swing",
 		done: function subjectIsUp () {
 			// drop him down,
 			subject.addClass("falling")

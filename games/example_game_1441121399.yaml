@@ -12,7 +12,6 @@ Scenes:
       - li.answers
 Widgets:
   - CountdownClock
-  - Scoreboard
 Templates:
   - &BASE_ROUND
     Prompter:
@@ -27,7 +26,6 @@ Templates:
         - li.old_man
   - &MULTIPLE_CHOICE_ROUND
     << : *BASE_ROUND
-    ResponseTypes: MultipleChoice
     MaxTime: 15
 Intro:
   content:
@@ -41,7 +39,6 @@ Rounds:
     << : *BASE_ROUND
     Prompt: What is your name?
     Listener: 
-      type: Listener
       container: li.answers
       user_input_types: 
         - FreeResponse
@@ -59,6 +56,7 @@ Rounds:
       - ul.gorge li:nth-child(2)
       - li.king
       - << : *MULTIPLE_CHOICE_ROUND
+        MaxTime: 0
         Prompt: What is the airspeed velocity of an unladen swallow?
         Answers:
           - Huh?

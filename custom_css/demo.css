@@ -117,11 +117,11 @@ li.old_man {
 
 .prompt.card.simple, .responder.card.simple {
     position: relative;
-    right: 7em;
-    top: -4.4em;
-    font-size: 2em;
-    min-width: 14em;
-    max-width: 18em;
+    right: 6.5em;
+    bottom: 5.5em;
+    font-size: 1.75em;
+    min-width: 15em;
+    max-width: 20em;
     padding: .5em 1em;
     background: #FFFFFF;
     -webkit-border-radius: 10px;
@@ -184,7 +184,7 @@ li.old_man {
     -moz-border-radius: 10px;
     border-radius: 0.75em;
     border: #BEBDBE solid 0.25em;
-    width: 70%;
+    width: 60%;
     font-size: 2em;
     margin-bottom: 0.25em;
     transition-delay: 0.5s;
@@ -275,6 +275,7 @@ li.answers {
     display: inline;
     margin: 0;
     margin-top: -0.35em;
+    margin-left: 0.3em;
 }
 
 .card.responder.simple {
