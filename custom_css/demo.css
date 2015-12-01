@@ -8,10 +8,11 @@ body {
     clear:both;
 }
 
-textarea#clock {
+/*#widgets > div.widget#clock {
   background-color: #417659;
-}
-textarea#scoreboard {
+}*/
+
+#widgets > div.widget#scoreboard {
   background-color: #4e6a8d;
 }
 
@@ -78,6 +79,10 @@ li.king:after {
   height: 0.6em;
   text-align: center;
   font-size: 0.7em;
+}
+li.king.walker:after {
+  top: 0.8em;
+  left: -0.5em;
 }
 li.old_man {
     background-image: url("../custom_img/old_man.png");

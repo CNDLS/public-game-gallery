@@ -51,7 +51,7 @@ Rounds:
       - content: To seek the Holy Grail.
         correct: true
   - !do
-    call: withCard
+    call: withElement
     pass:
       - ul.gorge li:nth-child(2)
       - li.king
@@ -70,7 +70,7 @@ Rounds:
           - content: Blue!
             correct: true
             feedback: Right. Off you go.
-        Teardown:
+        Teardown: !do
           call: clearCards
           pass: 
             - "li.answers, li.old_man"

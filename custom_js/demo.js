@@ -136,7 +136,7 @@ function throwTheSubjectIntoTheGorge (info, subject, round, game) {
 
 	subject
 	// *** START ANIM.*** hoist him up,
-	.animate({ "top": -300 }, { duration: 500, easing: "swing",
+	.animate({ "top": -400 }, { duration: 500, easing: "swing",
 		done: function subjectIsUp () {
 			// drop him down,
 			subject.addClass("falling")
@@ -165,17 +165,19 @@ function throwTheSubjectIntoTheGorge (info, subject, round, game) {
 
 function throwTheOldManIntoTheGorge (old_man, round, game) {
 	var _this = this;
-	
+  // old_man.css({transform: 'rotate(-90deg)'});
 	old_man
-	.animate({ "top": -300 }, { duration: 1000, easing: "swing",
+	.animate({ "top": -500 }, { duration: 500, easing: "swing",
 		done: function oldManIsUp() {
 			// drop him down,
 			var old_man = $("li.old_man");
 			old_man.addClass("falling")
-			.animate({ "left": 300 }, { duration: 1000, queue: false }, "swing")
+			.animate({ "left": 300 }, { duration: 1000, queue: false , easing: "swing", step: function (now) {
+        old_man.css({transform: 'rotate(' + (now - 425) + 'deg)'});
+			} })
 			.animate({ "opacity": 0 }, { duration: 1000, queue: false })
 			.animate({ "top": 300 }, { duration: 1000, easing: "swing",
-				done: function oldManIsGone() {
+				done: function oldManIsGone () {
 					old_man.remove();
 					_this.letTheSubjectWalkAcrossTheBridge($(".king"), round);
 				} // end oldManIsGone.
@@ -186,11 +188,11 @@ function throwTheOldManIntoTheGorge (old_man, round, game) {
 
 
 function letTheSubjectWalkAcrossTheBridge(subject, round) {
-	subject.addClass("walker")
+	subject.addClass("walker").css({ "top": -18 })
 	// *** START ANIM.*** walk him to the middle of the bridge,
 	.animate({ "left": 2 }, { duration: 2000, queue: false }, "swing")
 	.animate({ "opacity": 0 }, { duration: 2000, queue: false })
-	.animate({ "top": 32 }, { duration: 1000, easing: "swing",
+	.animate({ "top": 12 }, { duration: 1000, easing: "swing",
 		// walk him to the other side.
 		done: function subjectIsInTheMiddleOfTheBridge() {
 			subject.animate({ "top": -6 }, { duration: 1000, easing: "swing",
